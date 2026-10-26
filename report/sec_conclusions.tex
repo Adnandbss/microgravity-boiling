@@ -1,0 +1,91 @@
+% ===============================================================
+\section{Conclusions}
+\label{sec:conclusions}
+% ===============================================================
+
+\subsection{Effect of the initial guesses on the stability and speed of convergence}
+About 300 GA runs were made in this project (Tables~\ref{tab:t22study}, \ref{tab:t23study},
+\ref{tab:t25study} and~\ref{tab:t25ngen}). Table~\ref{tab:concl} summarises how the initial guesses
+of the constants affect the algorithm.
+
+\begin{table}[H]
+\centering\footnotesize
+\caption{Summary: how the initial guesses affect the stability and the speed of convergence of the genetic
+algorithm (MFRAC $=0.5$ and MUT $\approx\pm9\,\%$ unless stated).}
+\label{tab:concl}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.3cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.6cm}@{}}
+\toprule
+Initial guesses & Observed behaviour & Cause & Remedy\\
+\midrule
+Close to the solution (predicted output of the right order of magnitude): 2.2 Sets 1--2, 2.3 Set C, 2.5 Sets 3--4
+& Stable. Target reached in \textbf{2--12 generations} in every run; final error within a few percent of the true minimum.
+& Only the level of the prediction ($n_1$) has to be adjusted.
+& Continue with small mutations to refine.\\
+\addlinespace
+Right order of magnitude but wrong position along a valley: 2.2 Set 1, 2.3 Set A
+& Target reached quickly, but the constants depend on the guess and on the seed (e.g.\ $n_2=3.08$--$3.34$) and drift only slowly.
+& Correlated constants ($\ln n_1$ and $n_2$; $n_3$, $n_4$ and $n_5$): long, flat valley of the error.
+& Several seeds and guesses; larger MUT, then refinement; check the constants, not only the error.\\
+\addlinespace
+Far from the solution: 2.2 Sets 3--4, 2.3 Set D
+& \textbf{Stagnation} at 2--4 times the minimum error. NGEN $=20000$ does not help. With MUT $=\pm40\,\%$: convergence after $\sim$130--1600 generations.
+& Steps of at most $\pm$MUT per generation; most mutations away from the valley floor are rejected.
+& Two stages: MUT $=0.2$--$0.4$ to explore, then MUT $=0.03$--$0.01$ to refine.\\
+\addlinespace
+All organisms with nearly the same large error: 2.3 Set E, 2.5 Sets 1--2 $(1,1,1)$, $(2,2,0.5)$
+& \textbf{Population frozen}: nkeep $=0$ at every generation, error constant (0.6--0.95). Unaffected by MUT and NGEN.
+& Relative threshold $0.5\times$median selects nobody; all offspring come from \code{n[0]}, which is never replaced.
+& MFRAC $=1$ (converges in 55--84 generations), or better guesses.\\
+\addlinespace
+A constant guessed close to zero: 2.3 Set B ($n_5=0.01$)
+& The constant stays near zero; only 3/10 runs reach the target.
+& Multiplicative mutation: the step is proportional to the value.
+& Guess a non-zero value of the expected order of magnitude.\\
+\addlinespace
+Constants not identifiable from the data: 2.5 ($(UA)_e$, $(UA)_c$, $\alpha$)
+& Same error for $(UA)_e$ from 5 to 11~W/\textdegree C; the final constants follow the guess.
+& The data only constrain the series conductance $UA_{eff}$.
+& Report $UA_{eff}$; physically motivated guess $(UA)_e\approx(UA)_c$; more measurements.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+In short:
+\begin{enumerate}
+  \item \textbf{The most important property of the initial guesses is that the model output they
+        predict has the right order of magnitude.} When it does, the GA is stable and fast, whatever the
+        exact values. When all organisms are far from the data, the relative selection threshold
+        (MFRAC$\,\times\,$median) stops working and the skeleton algorithm can freeze completely.
+  \item \textbf{Speed of convergence}: with good guesses, the target error is reached in a few to a few
+        tens of generations, and the minimum is found within a few thousand generations. Beyond that,
+        increasing NGEN does not help a trapped population. What helps is a larger mutation amplitude
+        (exploration) followed by a small one (refinement), or a larger MFRAC.
+  \item \textbf{Reaching the target error is not proof of an accurate fit.} With correlated constants,
+        many sets of constants meet the target. To be confident, several seeds and initial guesses must give
+        the same constants. The deterministic check showed that my best GA fits are within
+        $0.03\,\%$ (Task~2.2), $0.6\,\%$ (Task~2.3) and $0.01\,\%$ (Task~2.5) of the true minimum error.
+  \item \textbf{Constants that the data do not determine} (Task~2.5) stay at values that depend on the
+        initial guess. Only identifiable combinations should be interpreted.
+\end{enumerate}
+
+\subsection{Main results}
+\begin{itemize}
+  \item \textbf{Task 2.2}: $\qpp=\TwoTwoNone\,\dTsat^{\TwoTwoNtwo}g^{\TwoTwoNthree}$, $\Ferrmean=\TwoTwoF$.
+        The rms deviation ($\TwoTwoRmsRel\,\%$) is larger than the $\pm10\,\%$ uncertainty of the data, and
+        the deviations are systematic between gravity levels. A power law in $g$ cannot represent the
+        Marangoni effect.
+  \item \textbf{Task 2.3}: $\qpp=\TwoThreeNone\,\dTsat^{\TwoThreeNtwo}(g+\TwoThreeNfour\,\gen\gamma)^{\TwoThreeNthree}P^{\TwoThreeNfive}$,
+        $\Ferrmean=\TwoThreeF$ (validation $\TwoThreeFval$). The overall deviation is close to the noise
+        level, but the $1\,\gen$ and $2\,\gen$ (5.5~kPa) groups keep a bias of $-16\,\%$ and $+11\,\%$. The
+        Marangoni effect acts like an additional gravity of about $2.4\,\gen$ for $\gamma=1.79$, which
+        explains why the heat flux hardly depends on gravity for this mixture.
+  \item \textbf{ET1}: the heat flux is about 6 times more sensitive to the superheat than to pressure, the
+        next most influential input. Keeping $|\Delta\qpp/\qpp|<0.15$ requires about $3.6\,\%$ accuracy on all inputs, or
+        about $\pm1.4$--$1.9$\,\textdegree C on the superheat.
+  \item \textbf{ET2}: the directly fitted inverse relation differs from the inverted forward relation by
+        $\approx5$--$10\,\%$. This difference comes from the scatter of the data (regression dilution),
+        as shown with synthetic data.
+  \item \textbf{Tasks 2.4--2.5}: $(UA)_e=\TwoFiveNone$~W/\textdegree C, $(UA)_c=\TwoFiveNtwo$~W/\textdegree C, $\alpha=\TwoFiveNthree$.
+        The MAE is $\TwoFiveFtrain$ for the training set and $\TwoFiveFval$ for the validation set, well
+        below 0.045. Only the overall conductance $UA_{eff}=\TwoFiveUA$~W/\textdegree C is determined uniquely by the data.
+\end{itemize}

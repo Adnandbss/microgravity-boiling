@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-labelledby="t d" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace">
+<title id="t">Microgravity boiling — gravity drops 100 times, heat flux does not</title>
+<desc id="d">Nucleate boiling of a water/2-propanol mixture measured on NASA parabolic flights. At 40 degrees C of wall superheat and 5.5 kPa, each gravity group's own power-law fit gives 88.7 W/cm2 at 0.098 m/s2, 90.0 at 9.8 and 133.2 at 19.6. A five-constant law fitted with a genetic algorithm, q = n1 (Tw-Tsat)^n2 (g + n4 gen gamma)^n3 P^n5, treats the Marangoni flow as an extra gravity of 23.7 m/s2 for gamma = 1.79. Without that term the same law would make the heat flux collapse at low gravity. The three-constant power law misses the data by 16.6 percent rms, the five-constant law by 12.3 percent (14.1 percent on 15 held-out points).</desc>
+<rect width="1200" height="620" fill="#F5F3EE"/>
+
+<!-- headline -->
+<text x="56" y="64" font-size="14" letter-spacing=".2em" fill="#7A766E">NUCLEATE BOILING · WATER/2-PROPANOL · PARABOLIC FLIGHTS</text>
+<text x="56" y="116" font-size="44" font-weight="700" fill="#141414">Gravity drops 100×. Heat flux doesn't.</text>
+<text x="56" y="154" font-size="19" fill="#4A4740">Marangoni flow pulls liquid back to the hot wall. A genetic algorithm</text>
+<text x="56" y="180" font-size="19" fill="#4A4740">fitted on 77 flight points reads it as 2.4 g of extra gravity.</text>
+
+<!-- left: heat flux versus gravity -->
+<text x="56" y="236" font-size="13" letter-spacing=".2em" fill="#7A766E">HEAT FLUX AT 40 °C SUPERHEAT, 5.5 kPa</text>
+<rect x="120" y="268" width="560" height="232" fill="#ECEAE3"/>
+<g stroke="#E1E0D9" stroke-width="1"><line x1="120" y1="442.0" x2="680" y2="442.0"/><line x1="120" y1="384.0" x2="680" y2="384.0"/><line x1="120" y1="326.0" x2="680" y2="326.0"/><line x1="120" y1="268.0" x2="680" y2="268.0"/></g>
+<g stroke="#C3C2B7" stroke-width="1"><line x1="120" y1="500" x2="680" y2="500"/><line x1="120" y1="268" x2="120" y2="500"/></g>
+<polyline points="120.0,492.4 127.1,492.1 134.2,491.8 141.3,491.5 148.4,491.2 155.4,490.8 162.5,490.5 169.6,490.1 176.7,489.7 183.8,489.3 190.9,488.9 198.0,488.5 205.1,488.1 212.2,487.6 219.2,487.1 226.3,486.7 233.4,486.1 240.5,485.6 247.6,485.1 254.7,484.5 261.8,483.9 268.9,483.3 275.9,482.7 283.0,482.0 290.1,481.3 297.2,480.6 304.3,479.9 311.4,479.1 318.5,478.3 325.6,477.5 332.7,476.6 339.7,475.7 346.8,474.8 353.9,473.8 361.0,472.8 368.1,471.8 375.2,470.7 382.3,469.6 389.4,468.4 396.5,467.2 403.5,466.0 410.6,464.7 417.7,463.4 424.8,462.0 431.9,460.5 439.0,459.0 446.1,457.4 453.2,455.8 460.3,454.1 467.3,452.4 474.4,450.6 481.5,448.7 488.6,446.7 495.7,444.7 502.8,442.6 509.9,440.4 517.0,438.1 524.1,435.8 531.1,433.3 538.2,430.8 545.3,428.2 552.4,425.4 559.5,422.6 566.6,419.6 573.7,416.6 580.8,413.4 587.8,410.1 594.9,406.7 602.0,403.1 609.1,399.4 616.2,395.6 623.3,391.6 630.4,387.5 637.5,383.2 644.6,378.7 651.6,374.1 658.7,369.3 665.8,364.3 672.9,359.2 680.0,353.8" fill="none" stroke="#EB6834" stroke-width="2" stroke-dasharray="7 5"/>
+<polyline points="120.0,368.9 127.1,368.8 134.2,368.8 141.3,368.8 148.4,368.8 155.4,368.8 162.5,368.8 169.6,368.8 176.7,368.7 183.8,368.7 190.9,368.7 198.0,368.7 205.1,368.7 212.2,368.6 219.2,368.6 226.3,368.6 233.4,368.5 240.5,368.5 247.6,368.4 254.7,368.4 261.8,368.3 268.9,368.3 275.9,368.2 283.0,368.2 290.1,368.1 297.2,368.0 304.3,367.9 311.4,367.9 318.5,367.8 325.6,367.7 332.7,367.5 339.7,367.4 346.8,367.3 353.9,367.2 361.0,367.0 368.1,366.8 375.2,366.7 382.3,366.5 389.4,366.2 396.5,366.0 403.5,365.8 410.6,365.5 417.7,365.2 424.8,364.9 431.9,364.6 439.0,364.2 446.1,363.8 453.2,363.4 460.3,362.9 467.3,362.4 474.4,361.9 481.5,361.3 488.6,360.7 495.7,360.0 502.8,359.3 509.9,358.5 517.0,357.6 524.1,356.7 531.1,355.8 538.2,354.7 545.3,353.6 552.4,352.4 559.5,351.1 566.6,349.7 573.7,348.2 580.8,346.5 587.8,344.8 594.9,343.0 602.0,341.0 609.1,338.9 616.2,336.7 623.3,334.3 630.4,331.7 637.5,329.0 644.6,326.1 651.6,323.0 658.7,319.8 665.8,316.3 672.9,312.6 680.0,308.8" fill="none" stroke="#2A78D6" stroke-width="2.5"/>
+<g fill="#2A78D6" stroke="#F5F3EE" stroke-width="2"><circle cx="178.9" cy="371.4" r="6"/><circle cx="582.1" cy="369.6" r="6"/><circle cx="642.7" cy="306.9" r="6"/></g>
+<g font-size="15" fill="#141414">
+  <text x="189.0" y="355.4">0.01 g → 1 g: +1.4 %</text>
+  <text x="143.0" y="424.6" fill="#B8501F">same law, γ = 0 (no Marangoni)</text>
+  <text x="143.0" y="443.6" fill="#B8501F">no γ = 0 data below 1 g</text>
+</g>
+<text x="136.0" y="394.8" font-size="15" fill="#1C5CAB">fitted law, γ = 1.79</text>
+<g font-size="13" fill="#898781" text-anchor="end"><text x="112" y="505.0">0</text><text x="112" y="447.0">40</text><text x="112" y="389.0">80</text><text x="112" y="331.0">120</text><text x="112" y="273.0">160</text></g>
+<g font-size="13" fill="#898781" text-anchor="middle"><text x="180.7" y="520">0.1</text><text x="382.3" y="520">1</text><text x="582.1" y="520">9.8</text><text x="642.7" y="520">19.6</text></g>
+<text x="400" y="546" font-size="15" fill="#4A4740" text-anchor="middle">gravity g (m/s², log scale)</text>
+<text transform="translate(76 384) rotate(-90)" font-size="15" fill="#4A4740" text-anchor="middle">q″ (W/cm²)</text>
+<text x="56" y="574" font-size="13" fill="#7A766E">Dots: each gravity group's own fit, read at 40 °C.</text>
+<line x1="712" y1="226" x2="712" y2="556" stroke="#E1E0D9" stroke-width="1"/>
+
+<!-- right: what the fits say -->
+<text x="742" y="236" font-size="13" letter-spacing=".2em" fill="#7A766E">WHAT THE FITS SAY</text>
+<text x="742" y="282" font-size="15" fill="#4A4740">power law in g, 3 constants</text>
+<text x="742" y="322" font-size="34" font-weight="700" fill="#141414">16.6 %</text>
+<text x="742" y="346" font-size="13" fill="#7A766E">rms miss · above the ±10 % noise</text>
+<text x="742" y="392" font-size="15" fill="#4A4740">g + n4·gen·γ and P, 5 constants</text>
+<text x="742" y="432" font-size="34" font-weight="700" fill="#141414">12.3 %</text>
+<text x="742" y="456" font-size="13" fill="#7A766E">rms miss · 14.1 % on 15 held-out points</text>
+<text x="742" y="502" font-size="15" fill="#4A4740">Marangoni term at γ = 1.79</text>
+<text x="742" y="542" font-size="34" font-weight="700" fill="#141414">23.7 m/s²</text>
+<text x="742" y="566" font-size="13" fill="#7A766E">≈ 2.4 g of extra gravity</text>
+</svg>

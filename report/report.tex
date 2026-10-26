@@ -1,0 +1,84 @@
+% ===============================================================
+%  ME249 Fall 2026 -- Project 2 -- Summary report
+%  Compile with:  pdflatex report.tex  (twice, for the table of contents and references)
+% ===============================================================
+\documentclass[11pt]{article}
+
+\newcommand{\studentname}{Adnan AHALI}
+
+\input{preamble}
+\input{numbers}
+
+\begin{document}
+
+% ---------------------------------------------------------------- title page
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\large University of California, Berkeley -- Mechanical Engineering Department\par}
+\vspace{0.4cm}
+{\large ME249, Fall 2026 -- Prof.\ V.~P.~Carey\par}
+\vspace{2.2cm}
+\rule{\linewidth}{0.6pt}\\[0.5cm]
+{\LARGE\bfseries Project 2\par}
+\vspace{0.4cm}
+{\Large Genetic-algorithm modelling of nucleate boiling of a water/2-propanol mixture in variable gravity,
+and calibration of a heat-pipe heat-exchanger model\par}
+\vspace{0.3cm}
+\rule{\linewidth}{0.6pt}\\[1.6cm]
+{\large \studentname\par}
+\vspace{0.4cm}
+{\large Individual project (team of one)\par}
+\vfill
+{\large Report due October 27, 2026\par}
+\end{titlepage}
+
+% ---------------------------------------------------------------- summary
+\section*{Summary}
+\addcontentsline{toc}{section}{Summary}
+All tasks of Project~2 were completed, including those that individuals working alone may omit
+(Task~2.1(b), Task~2.3) and the extra tasks ET1 and ET2 assigned to teams of three. The genetic algorithm
+(GA) of the skeleton programs was kept, but one bug of the skeleton code and two data values had to be
+corrected. The main results are:
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\linewidth}{@{}l X c@{}}
+\toprule
+Task & Best-fit relation (GA) & Error (target)\\
+\midrule
+2.2 & $\qpp=\TwoTwoNone\,\dTsat^{\TwoTwoNtwo}\,g^{\TwoTwoNthree}$ & $\Ferrmean=\TwoTwoF$ ($<0.035$)\\
+2.3 & $\qpp=\TwoThreeNone\,\dTsat^{\TwoThreeNtwo}(g+\TwoThreeNfour\,\gen\gamma)^{\TwoThreeNthree}P^{\TwoThreeNfive}$ & $\TwoThreeF$ ($<0.03$); validation $\TwoThreeFval$\\
+ET2 & $\dTsat=20.27\,(\qpp)^{0.3074}(g+1.308\,\gen\gamma)^{-0.1455}P^{-0.1485}$ & $\EtTwoGaF$\\
+2.5 & $(UA)_e=\TwoFiveNone$~W/\textdegree C, $(UA)_c=\TwoFiveNtwo$~W/\textdegree C, $\alpha=\TwoFiveNthree$ & MAE $\TwoFiveFtrain$ / $\TwoFiveFval$ ($<0.045$)\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The three-constant power law of Task~2.2 fits the data only to $\pm\TwoTwoRmsRel\,\%$ (rms), which is
+worse than the $\pm10\,\%$ data uncertainty, because it cannot describe the Marangoni effect. The
+five-constant model of Task~2.3 brings the overall deviation close to the noise level ($\TwoThreeRmsTrain\,\%$),
+although the $1\,\gen$ and $2\,\gen$ (5.5~kPa) groups keep a bias of $11$--$16\,\%$.
+It shows that for $\gamma=1.79$ the Marangoni flow acts like an extra gravity of about $2.4\,\gen$. For the
+heat pipe, the data determine only the overall conductance $UA_{eff}=\TwoFiveUA$~W/\textdegree C, not $(UA)_e$ and
+$(UA)_c$ separately. About 300 GA runs show that the most important property of the initial guesses is
+that the output they predict has the right order of magnitude. Far from the solution, the GA either
+stagnates (steps that are too small along a narrow valley) or freezes completely (the relative selection
+threshold keeps no survivor). Larger mutations, followed by a refinement with small mutations, and a
+larger selection fraction solve these problems.
+
+\tableofcontents
+\newpage
+
+\input{sec_intro}
+\input{sec_t21_t22}
+\input{sec_t23}
+\input{sec_extra}
+\input{sec_part2}
+\input{sec_conclusions}
+\input{sec_code}
+
+\appendix
+\input{appendix}
+
+\end{document}

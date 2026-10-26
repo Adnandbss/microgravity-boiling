@@ -1,0 +1,68 @@
+% ---------------------------------------------------------------
+%  Preamble - ME249 Project 2 report
+% ---------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+
+\captionsetup{font=small, labelfont=bf, margin=0.5cm}
+\setlist{itemsep=1pt, topsep=3pt}
+\setlength{\parskip}{3pt}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\arraystretch}{1.15}
+
+\definecolor{codebg}{HTML}{F7F7F5}
+\definecolor{codecomment}{HTML}{52514E}
+\definecolor{codekw}{HTML}{1C5CAB}
+\definecolor{codestr}{HTML}{A33A1A}
+\definecolor{good}{HTML}{006300}
+\definecolor{bad}{HTML}{B02A2A}
+
+\lstdefinestyle{py}{
+  language=Python,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{codekw}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{codestr},
+  backgroundcolor=\color{codebg},
+  numbers=left, numberstyle=\tiny\color{codecomment}, numbersep=6pt,
+  frame=single, rulecolor=\color{black!15},
+  breaklines=true, breakatwhitespace=false, columns=fullflexible, keepspaces=true,
+  showstringspaces=false, tabsize=4,
+  literate={°}{{\textdegree}}1 {±}{{$\pm$}}1 {–}{{--}}1
+}
+\lstset{style=py}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small ME249 Fall 2026 -- Project 2}
+\rhead{\small \studentname}
+\cfoot{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+% notation
+\newcommand{\qpp}{q''}
+\newcommand{\dTsat}{(T_w-T_{sat})}
+\newcommand{\Ferrmean}{[F_{err}]_{mean}}
+\newcommand{\gen}{g_{en}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\nh}[1]{\hat{n}_{#1}}
+\newcommand{\fittable}[1]{\begin{adjustbox}{max width=\linewidth}\input{tables/#1}\end{adjustbox}}

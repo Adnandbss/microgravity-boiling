@@ -1,0 +1,19 @@
+# course material, not redistributed
+Project2ME249F26.pdf
+AdjTasksP2F26.pdf
+CodeP2.1F26.ipynb
+CodeP2.2F26.ipynb
+CodeP2.3F26.ipynb
+
+# LaTeX by-products
+report/*.log
+report/*.aux
+report/*.toc
+report/*.out
+report/report.pdf
+
+# Python / Jupyter / OS
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store

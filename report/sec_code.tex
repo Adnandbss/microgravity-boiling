@@ -1,0 +1,112 @@
+% ===============================================================
+\section{Summary of the program modifications (Task 2.6)}
+\label{sec:codechanges}
+% ===============================================================
+
+This section lists, program by program, the modifications made to the previous version of the code, and
+all the changes made to the basic structure of the example code. The complete programs are in
+Appendix~\ref{app:code}. Every modified line is also marked in the code by a comment.
+
+\subsection{Changes to the basic structure of the example code (all GA programs)}
+\begin{enumerate}[label=\textbf{S\arabic*.}]
+  \item \textbf{Bug fix -- \code{import random}.} In \code{CodeP2.2F26}, \code{import random} replaces the
+        function \code{random()} imported in \code{CodeP2.1F26} by the module, so the combined program
+        stops at the initialisation with a \code{TypeError}. It was replaced by
+        \code{from random import random, seed}.
+  \item \textbf{Data corrections.} Two values of \code{CodeP2.1F26} were corrected to match the Appendix
+        (Table~\ref{tab:datacheck}).
+  \item \textbf{Evolution loop placed in a function.} The skeleton code from ``INITIALIZING PARAMETERS'' to
+        the final print was placed in \code{run\_GA(n1i,\dots,n5i, NGEN, MUT, MFRAC, rseed, target, verbose)}.
+        This allows many runs (initial guesses, mutation amplitudes, seeds, NGEN) in the same notebook.
+        Inside the function, the statements of the loop (fitness, selection, mating, mutation, averaging,
+        minimum search, time averages) are those of the skeleton, line for line.
+  \item \textbf{Parameters instead of literals.} The mutation amplitude (\code{0.085} in the code) is the
+        argument \code{MUT}, and the selection fraction \code{MFRAC} ($=0.5$ in the skeleton) is an argument.
+  \item \textbf{Reproducibility.} The skeleton seeds Python's \code{random} once but never seeds
+        \code{numpy.random}, which is used for selection, mating and mutation. Every run therefore gave
+        different results. \code{run\_GA} now calls \code{seed(rseed)} and \code{numpy.random.seed(rseed)},
+        so any run of this report can be reproduced exactly from its seed.
+  \item \textbf{Diagnostics returned.} The function returns the histories (\code{aFerrmeanavgn},
+        \code{n1avg}, \dots), the generation of the minimum (\code{kmin}), the first generation below the
+        target (\code{kconv}) and the number of survivors of each generation (\code{nkeephist}). None of
+        these quantities affects the algorithm.
+  \item \textbf{Figures.} The skeleton plots are kept (\code{plt.loglog()}, same legends). The
+        \code{yticks} were extended down to $10^{-4}$ so that $n_1\approx10^{-3}$ is visible. Additional
+        report-quality figures are saved as PDF files.
+\end{enumerate}
+
+\subsection{Program-by-program modifications}
+
+\paragraph{\code{P2\_Task2.1} (from \code{CodeP2.1F26}).} S2; a print of the number of rows and of one
+element; a cell that checks the data against the Appendix; a cell for the log-log plot and power-law
+fits of Task~2.1(b).
+
+\paragraph{\code{P2\_Task2.2} (from \code{CodeP2.1F26} + \code{CodeP2.2F26}).} S1--S7. The error
+function of the skeleton (Eq.~(1.3)) is unchanged. Added cells: first run with the skeleton guesses,
+deterministic reference, initial-guess study, best-fit plots and statistics, landscape.
+
+\paragraph{\code{P2\_Task2.3} (copy of \code{P2\_Task2.2}).} Modifications (i)--(vii) of the statement:
+\begin{enumerate}[label=(\roman*)]
+  \item the red-text data lines (32 rows with $P=9.5$ and $7.0$~kPa, $\gamma=0$ and $1.71$) are
+        uncommented, giving 77 rows;
+  \item \code{ND = 77}, \code{NS = 77};
+  \item the error function becomes Eq.~(1.7) in both locations (fitness loop and population-average loop),
+        and the prediction used in the plots becomes Eq.~(1.5):
+\begin{lstlisting}
+gen_en = 9.8   # earth-normal gravitational acceleration, m/s2
+Ferr[i] = n[i][0]*lydata[i][0] + math.log(n[i][1]) + n[i][2]*lydata[i][1]
+Ferr[i] = Ferr[i] + n[i][3]*math.log( ydata[i][2] + n[i][4]*gen_en*ydata[i][3] ) + n[i][5]*lydata[i][4]
+...
+Ferravgn[i] = -1.*lydata[i][0] + math.log(n1avg[k]) + n2avg[k]*lydata[i][1]
+Ferravgn[i] = Ferravgn[i] + n3avg[k]*math.log( ydata[i][2] + n4avg[k]*gen_en*ydata[i][3] ) + n5avg[k]*lydata[i][4]
+...
+qpred = n1*row[1]**n2 * (row[2] + n4*gen_en*row[3])**n3 * row[4]**n5
+\end{lstlisting}
+  \item the mating/mutation lines of $n_4$ and $n_5$ are uncommented (with amplitude \code{MUT});
+  \item the final print-out lists $n_1$--$n_5$ (\code{ENDING}, \code{MINUMUM}, \code{TIME AVG});
+  \item the legend of the first plot is replaced by the five-constant legend and $n_4$, $n_5$ are plotted;
+  \item the default initial guesses are $0.000476,\ 3.028,\ 0.2249,\ 1.054,\ 0.217$.
+\end{enumerate}
+Added: the 15 validation points of the Appendix (\code{vdata}, used only to test the fit), the study
+over initial guesses and the multi-stage refinement, the surface plot, and the profiles of
+Fig.~\ref{fig:t23prof}.
+
+\paragraph{\code{P2\_ET1} (new).} Reads the best-fit constants of Task~2.3 and evaluates the fractional
+change ratios with finite steps, following steps 1--3 of the statement. It also computes the analytical
+logarithmic derivatives and the limiting input inaccuracies.
+
+\paragraph{\code{P2\_ET2} (copy of \code{P2\_Task2.3}).} The data rows are reorganised as
+$[T_w-T_{sat},\ \qpp,\ g,\ \gamma,\ P]$ and \code{lydata} is recomputed. Because column~0 is now
+$\ln\dTsat$ and column~1 is $\ln\qpp$, the error statements of Task~2.3 compute exactly the error of
+Eq.~(ET2.1). Only the initial guesses (negative $\nh3$, $\nh5$: the multiplicative mutation keeps the
+sign), the labels and the analysis cells were changed.
+
+\paragraph{\code{P2\_Task2.4-2.5} (copy of \code{P2\_Task2.2}).}
+\begin{itemize}
+  \item The data are those of \code{CodeP2.3F26} (122 points $[T_{a,in},T_{a,out},\dot q]$). A seeded random
+        permutation splits them into a training set (\code{ydata}, $N_D=98$, $80.3\,\%$) and a validation set
+        (\code{vdata}, $N_V=24$, $19.7\,\%$). The GA sees only the training set, and $N_S=N_D=98$.
+  \item The error function was changed in the two locations, Eqs.~(2.4)--(2.5), with $n_1=(UA)_e$,
+        $n_2=(UA)_c$, $n_3=\alpha$. The model Eq.~(2.6) is coded once and used in both locations and in the plots:
+\begin{lstlisting}
+sigma = 5.67e-8     # Stefan-Boltzmann constant, W m-2 K-4
+hcref = 80.0        # W m-2 K-1
+def hrad(Tain, Taout):
+    Ti = Tain + 273.15
+    To = Taout + 273.15
+    return sigma*(Ti + To)*(Ti**2 + To**2)
+def qdot_model(n1, n2, n3, Tain, Taout):
+    UAcr = n2*(1. + n3*hrad(Tain, Taout)/hcref)
+    return UAcr*( n1*(Tain - Taout)/(n1 + UAcr) )
+...
+Ferr[i] = ydata[i][2] - qdot_model(n[i][1], n[i][2], n[i][3], ydata[i][0], ydata[i][1])
+aFerr[i] = abs(Ferr[i])/abs(ydata[i][2])  #- absolute fractional error
+...
+Ferravgn[i] = ydata[i][2] - qdot_model(n1avg[k], n2avg[k], n3avg[k], ydata[i][0], ydata[i][1])
+aFerravgn[i] = abs(Ferravgn[i])/abs(ydata[i][2])
+\end{lstlisting}
+  \item The mean absolute error of the validation set is computed at each generation with the
+        population-average constants (\code{aFerrval}). It is used for monitoring only, not for selection.
+  \item The plotting section was rewritten for the log-log plots of predicted versus data $\dot q$ (training
+        and validation) and for the surface plot of $\dot q(T_{a,in},T_{a,out})$.
+\end{itemize}
